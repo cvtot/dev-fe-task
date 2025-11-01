@@ -40,67 +40,40 @@ export interface Comment {
 
 const BASE_URL = 'https://jsonplaceholder.typicode.com';
 
-// Utility functions for generating placeholder images
+// Utility functions for generating placeholder images using Picsum
 export function getUserAvatar(userId: number): string {
-  // Using DiceBear API for consistent user avatars
-  return `https://api.dicebear.com/7.x/avataaars/svg?seed=${userId}`;
+  // Using Picsum for consistent user avatars - 40x40 for avatars
+  return `https://picsum.photos/40/40?random=${userId}`;
 }
 
 export function getPostCoverImage(postId: number, title?: string): string {
-  // Using Unsplash for beautiful, topic-relevant cover images
-  const techTopics = [
-    'programming,code', 'technology,computer', 'software,development', 
-    'web,design', 'mobile,app', 'data,analytics', 'artificial,intelligence',
-    'cybersecurity', 'cloud,computing', 'blockchain', 'startup,business'
-  ];
-  
-  // More sophisticated topic selection based on post ID and title
-  let topic = techTopics[postId % techTopics.length];
-  
-  // If title is provided, try to match it to a more relevant topic
-  if (title) {
-    const titleLower = title.toLowerCase();
-    if (titleLower.includes('design') || titleLower.includes('ui')) topic = 'web,design';
-    else if (titleLower.includes('mobile') || titleLower.includes('app')) topic = 'mobile,app';
-    else if (titleLower.includes('data') || titleLower.includes('analytics')) topic = 'data,analytics';
-    else if (titleLower.includes('security')) topic = 'cybersecurity';
-    else if (titleLower.includes('business') || titleLower.includes('startup')) topic = 'startup,business';
-  }
-  
-  return `https://source.unsplash.com/1200x600/?${topic}&sig=${postId}`;
+  // Using Picsum for cover images - 1200x600
+  // Picsum uses ?random=ID to cache the same image for the same ID
+  return `https://picsum.photos/1200/600?random=${postId}`;
 }
 
 export function getPostThumbnail(postId: number, title?: string): string {
-  // Smaller version for post cards - same logic as cover but smaller size
-  const techTopics = [
-    'programming,code', 'technology,computer', 'software,development', 
-    'web,design', 'mobile,app', 'data,analytics', 'artificial,intelligence',
-    'cybersecurity', 'cloud,computing', 'blockchain', 'startup,business'
-  ];
-  
-  let topic = techTopics[postId % techTopics.length];
-  
-  if (title) {
-    const titleLower = title.toLowerCase();
-    if (titleLower.includes('design') || titleLower.includes('ui')) topic = 'web,design';
-    else if (titleLower.includes('mobile') || titleLower.includes('app')) topic = 'mobile,app';
-    else if (titleLower.includes('data') || titleLower.includes('analytics')) topic = 'data,analytics';
-    else if (titleLower.includes('security')) topic = 'cybersecurity';
-    else if (titleLower.includes('business') || titleLower.includes('startup')) topic = 'startup,business';
-  }
-  
-  return `https://source.unsplash.com/600x300/?${topic}&sig=${postId}`;
+  // Smaller version for post cards - 600x300 using Picsum
+  return `https://picsum.photos/600/300?random=${postId}`;
 }
 
 // Alternative: Generate SVG-based cover images for consistent branding
 export function getPostCoverSVG(postId: number, title: string): string {
   const colors = [
-    '#6366f1', '#8b5cf6', '#06b6d4', '#10b981', '#f59e0b', 
-    '#ef4444', '#ec4899', '#84cc16', '#f97316', '#3b82f6'
+    '#6366f1',
+    '#8b5cf6',
+    '#06b6d4',
+    '#10b981',
+    '#f59e0b',
+    '#ef4444',
+    '#ec4899',
+    '#84cc16',
+    '#f97316',
+    '#3b82f6',
   ];
   const bgColor = colors[postId % colors.length];
   const titleEncoded = encodeURIComponent(title.substring(0, 50));
-  
+
   return `data:image/svg+xml,${encodeURIComponent(`
     <svg width="1200" height="600" xmlns="http://www.w3.org/2000/svg">
       <defs>
@@ -116,7 +89,7 @@ export function getPostCoverSVG(postId: number, title: string): string {
       <circle cx="1050" cy="150" r="80" fill="white" opacity="0.1"/>
       <circle cx="950" cy="450" r="60" fill="white" opacity="0.1"/>
     </svg>
-  `)}`
+  `)}`;
 }
 
 // Utility function for API calls with error handling
@@ -202,16 +175,29 @@ export interface EnhancedUser extends User {
 
 // Enhance posts with additional UI-friendly data
 export function enhancePost(post: Post): EnhancedPost {
-  const tags = ['React', 'JavaScript', 'Web Dev', 'Tutorial', 'Tips', 'Guide', 'TypeScript', 'Next.js', 'API', 'Frontend'];
-  const randomTags = tags.sort(() => 0.5 - Math.random()).slice(0, 2 + (post.id % 3));
-  
+  const tags = [
+    'React',
+    'JavaScript',
+    'Web Dev',
+    'Tutorial',
+    'Tips',
+    'Guide',
+    'TypeScript',
+    'Next.js',
+    'API',
+    'Frontend',
+  ];
+  const randomTags = tags
+    .sort(() => 0.5 - Math.random())
+    .slice(0, 2 + (post.id % 3));
+
   return {
     ...post,
-    coverImage: getPostCoverImage(post.id, post.title), // Now uses title for better matching
-    thumbnail: getPostThumbnail(post.id, post.title),   // Now uses title for better matching
-    readTime: Math.ceil(3 + (post.body.length / 150)), // More realistic read time calculation
+    coverImage: getPostCoverImage(post.id, post.title),
+    thumbnail: getPostThumbnail(post.id, post.title),
+    readTime: Math.ceil(3 + post.body.length / 150),
     tags: randomTags,
-    publishedAt: new Date(2024, (post.id % 12), (post.id % 28) + 1).toISOString(), // More varied dates
+    publishedAt: new Date(2024, post.id % 12, (post.id % 28) + 1).toISOString(),
   };
 }
 
@@ -222,9 +208,9 @@ export function enhanceUser(user: User, postsCount: number = 10): EnhancedUser {
     'Tech enthusiast sharing insights on modern web development.',
     'Software engineer with a love for React and TypeScript.',
     'Frontend developer creating beautiful and functional interfaces.',
-    'Backend specialist focusing on scalable architectures.'
+    'Backend specialist focusing on scalable architectures.',
   ];
-  
+
   return {
     ...user,
     avatar: getUserAvatar(user.id),
@@ -237,7 +223,7 @@ export function enhanceUser(user: User, postsCount: number = 10): EnhancedUser {
 export function paginatePosts(posts: Post[], page: number, limit: number = 10) {
   const startIndex = (page - 1) * limit;
   const endIndex = startIndex + limit;
-  
+
   return {
     posts: posts.slice(startIndex, endIndex),
     totalPages: Math.ceil(posts.length / limit),

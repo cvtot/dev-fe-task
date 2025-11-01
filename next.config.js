@@ -4,7 +4,24 @@ const nextConfig = {
     typedRoutes: true,
   },
   images: {
-    domains: ['jsonplaceholder.typicode.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'jsonplaceholder.typicode.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'source.unsplash.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'api.dicebear.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'picsum.photos',
+      },
+    ],
   },
 };
 
