@@ -1,0 +1,155 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - navigation "Breadcrumb" [ref=e4]:
+      - list [ref=e5]:
+        - listitem [ref=e6]:
+          - link "Home" [ref=e7] [cursor=pointer]:
+            - /url: /blog
+        - listitem [ref=e8]: /
+        - listitem [ref=e9]: Product
+    - generic [ref=e10]:
+      - main [ref=e11]:
+        - img "sunt aut facere repellat provident occaecati excepturi optio reprehenderit" [ref=e13]
+        - heading "sunt aut facere repellat provident occaecati excepturi optio reprehenderit" [level=1] [ref=e14]
+        - generic [ref=e15]:
+          - img "Leanne Graham" [ref=e17]
+          - generic [ref=e19]:
+            - generic [ref=e20]: by
+            - generic [ref=e21]: Leanne Graham
+            - generic [ref=e22]: "-"
+            - generic [ref=e23]: 2 February 2024
+          - generic [ref=e24]:
+            - img [ref=e25]
+            - generic [ref=e27]: "5"
+        - article [ref=e28]:
+          - generic [ref=e29]: quia et suscipit suscipit recusandae consequuntur expedita et cum reprehenderit molestiae ut ut quas totam nostrum rerum est autem sunt rem eveniet architecto
+        - generic [ref=e30]:
+          - heading "5 Comments" [level=2] [ref=e31]
+          - generic [ref=e32]:
+            - generic [ref=e33]:
+              - generic [ref=e34]:
+                - img "id labore ex et quam laborum" [ref=e36]
+                - generic [ref=e37]:
+                  - generic [ref=e38]:
+                    - heading "id labore ex et quam laborum" [level=4] [ref=e39]
+                    - img [ref=e40]
+                  - paragraph [ref=e42]: 2 November 2025
+              - paragraph [ref=e43]: laudantium enim quasi est quidem magnam voluptate ipsam eos tempora quo necessitatibus dolor quam autem quasi reiciendis et nam sapiente accusantium
+              - button "Reply" [ref=e44] [cursor=pointer]
+            - generic [ref=e45]:
+              - generic [ref=e46]:
+                - img "quo vero reiciendis velit similique earum" [ref=e48]
+                - generic [ref=e49]:
+                  - generic [ref=e50]:
+                    - heading "quo vero reiciendis velit similique earum" [level=4] [ref=e51]
+                    - img [ref=e52]
+                  - paragraph [ref=e54]: 2 November 2025
+              - paragraph [ref=e55]: est natus enim nihil est dolore omnis voluptatem numquam et omnis occaecati quod ullam at voluptatem error expedita pariatur nihil sint nostrum voluptatem reiciendis et
+              - button "Reply" [ref=e56] [cursor=pointer]
+            - generic [ref=e57]:
+              - generic [ref=e58]:
+                - img "odio adipisci rerum aut animi" [ref=e60]
+                - generic [ref=e61]:
+                  - generic [ref=e62]:
+                    - heading "odio adipisci rerum aut animi" [level=4] [ref=e63]
+                    - img [ref=e64]
+                  - paragraph [ref=e66]: 2 November 2025
+              - paragraph [ref=e67]: quia molestiae reprehenderit quasi aspernatur aut expedita occaecati aliquam eveniet laudantium omnis quibusdam delectus saepe quia accusamus maiores nam est cum et ducimus et vero voluptates excepturi deleniti ratione
+              - button "Reply" [ref=e68] [cursor=pointer]
+            - generic [ref=e69]:
+              - generic [ref=e70]:
+                - img "alias odio sit" [ref=e72]
+                - generic [ref=e73]:
+                  - generic [ref=e74]:
+                    - heading "alias odio sit" [level=4] [ref=e75]
+                    - img [ref=e76]
+                  - paragraph [ref=e78]: 2 November 2025
+              - paragraph [ref=e79]: non et atque occaecati deserunt quas accusantium unde odit nobis qui voluptatem quia voluptas consequuntur itaque dolor et qui rerum deleniti ut occaecati
+              - button "Reply" [ref=e80] [cursor=pointer]
+            - generic [ref=e81]:
+              - generic [ref=e82]:
+                - img "vero eaque aliquid doloribus et culpa" [ref=e84]
+                - generic [ref=e85]:
+                  - generic [ref=e86]:
+                    - heading "vero eaque aliquid doloribus et culpa" [level=4] [ref=e87]
+                    - img [ref=e88]
+                  - paragraph [ref=e90]: 2 November 2025
+              - paragraph [ref=e91]: harum non quasi et ratione tempore iure ex voluptates in ratione harum architecto fugit inventore cupiditate voluptates magni quo et
+              - button "Reply" [ref=e92] [cursor=pointer]
+          - generic [ref=e93]:
+            - paragraph [ref=e94]: To leave a comment, click the button below to sign in with Google.
+            - button "SIGN IN WITH GOOGLE" [ref=e95] [cursor=pointer]:
+              - img [ref=e96]
+              - text: SIGN IN WITH GOOGLE
+        - link "Next" [ref=e102] [cursor=pointer]:
+          - /url: /blog/2
+          - generic [ref=e103]: Next
+          - img [ref=e104]
+      - complementary [ref=e106]:
+        - complementary [ref=e108]:
+          - generic [ref=e109]:
+            - heading "Popular Posts" [level=3] [ref=e110]
+            - generic [ref=e111]:
+              - link "qui est esse qui est esse 3 Mar 2024" [ref=e112] [cursor=pointer]:
+                - /url: /blog/2
+                - img "qui est esse" [ref=e114]
+                - generic [ref=e115]:
+                  - heading "qui est esse" [level=4] [ref=e116]
+                  - paragraph [ref=e117]: 3 Mar 2024
+              - link "ea molestias quasi exercitationem repellat qui ipsa sit aut ea molestias quasi exercitationem repellat qui ipsa sit aut 4 Apr 2024" [ref=e118] [cursor=pointer]:
+                - /url: /blog/3
+                - img "ea molestias quasi exercitationem repellat qui ipsa sit aut" [ref=e120]
+                - generic [ref=e121]:
+                  - heading "ea molestias quasi exercitationem repellat qui ipsa sit aut" [level=4] [ref=e122]
+                  - paragraph [ref=e123]: 4 Apr 2024
+              - link "eum et est occaecati eum et est occaecati 5 May 2024" [ref=e124] [cursor=pointer]:
+                - /url: /blog/4
+                - img "eum et est occaecati" [ref=e126]
+                - generic [ref=e127]:
+                  - heading "eum et est occaecati" [level=4] [ref=e128]
+                  - paragraph [ref=e129]: 5 May 2024
+          - generic [ref=e130]:
+            - heading "Follow Us" [level=3] [ref=e131]
+            - generic [ref=e132]:
+              - link "Twitter" [ref=e133] [cursor=pointer]:
+                - /url: https://twitter.com
+                - img [ref=e134]
+                - generic [ref=e136]: Twitter
+              - link "YouTube" [ref=e137] [cursor=pointer]:
+                - /url: https://youtube.com
+                - img [ref=e138]
+                - generic [ref=e140]: YouTube
+              - link "Facebook" [ref=e141] [cursor=pointer]:
+                - /url: https://facebook.com
+                - img [ref=e142]
+                - generic [ref=e144]: Facebook
+              - link "Instagram" [ref=e145] [cursor=pointer]:
+                - /url: https://instagram.com
+                - img [ref=e146]
+                - generic [ref=e148]: Instagram
+          - generic [ref=e149]:
+            - heading "Main Tags" [level=3] [ref=e150]
+            - generic [ref=e151]:
+              - link "Creative" [ref=e152] [cursor=pointer]:
+                - /url: /blog?tag=Creative
+              - link "Flat Design" [ref=e153] [cursor=pointer]:
+                - /url: /blog?tag=Flat%20Design
+              - link "Freebies" [ref=e154] [cursor=pointer]:
+                - /url: /blog?tag=Freebies
+              - link "Marketing" [ref=e155] [cursor=pointer]:
+                - /url: /blog?tag=Marketing
+              - link "Premium" [ref=e156] [cursor=pointer]:
+                - /url: /blog?tag=Premium
+              - link "Seo Optimized" [ref=e157] [cursor=pointer]:
+                - /url: /blog?tag=Seo%20Optimized
+              - link "Shopping" [ref=e158] [cursor=pointer]:
+                - /url: /blog?tag=Shopping
+              - link "Vector" [ref=e159] [cursor=pointer]:
+                - /url: /blog?tag=Vector
+              - link "Web Design" [ref=e160] [cursor=pointer]:
+                - /url: /blog?tag=Web%20Design
+  - alert [ref=e161]
+```

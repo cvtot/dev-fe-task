@@ -1,12 +1,7 @@
 'use client';
 
 import { useRouter, useSearchParams } from 'next/navigation';
-
-interface PaginationProps {
-  currentPage: number;
-  totalPages: number;
-  userId?: number | null;
-}
+import type { PaginationProps } from '@/types';
 
 export default function Pagination({ currentPage, totalPages, userId }: PaginationProps) {
   const router = useRouter();

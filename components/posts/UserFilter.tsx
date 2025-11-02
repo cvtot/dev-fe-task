@@ -1,18 +1,7 @@
 'use client';
 
 import { useRouter, useSearchParams } from 'next/navigation';
-
-interface User {
-  id: number;
-  name: string;
-  username: string;
-  email: string;
-}
-
-interface UserFilterProps {
-  users: User[];
-  selectedUserId: number | null;
-}
+import type { User, UserFilterProps } from '@/types';
 
 export default function UserFilter({ users, selectedUserId }: UserFilterProps) {
   const router = useRouter();

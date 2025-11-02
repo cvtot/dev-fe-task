@@ -1,19 +1,5 @@
 import Link from 'next/link';
-
-interface User {
-  id: number;
-  name: string;
-  username: string;
-  email: string;
-  website?: string;
-}
-
-interface PostCardProps {
-  id: number;
-  title: string;
-  body: string;
-  user?: User;
-}
+import type { PostCardProps } from '@/types';
 
 export default function PostCard({ id, title, body, user }: PostCardProps) {
   // Truncate body text for preview
