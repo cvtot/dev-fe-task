@@ -1,97 +1,104 @@
-import Link from 'next/link';
-import { fetchPost, fetchUser, fetchComments } from '@/lib/api';
-import { notFound } from 'next/navigation';
+import Link from "next/link";
+import { fetchPost, fetchUser, fetchComments } from "@/lib/api";
+import { notFound } from "next/navigation";
 
 interface PostDetailPageProps {
-  params: {
-    id: string;
-  };
+  params: { id: string };
 }
 
 export default async function PostDetailPage({ params }: PostDetailPageProps) {
   const postId = parseInt(params.id, 10);
-
-  if (isNaN(postId)) {
-    notFound();
-  }
+  if (isNaN(postId)) notFound();
 
   try {
-    // Fetch post, user, and comments in parallel
     const [post, comments] = await Promise.all([
       fetchPost(postId),
       fetchComments(postId),
     ]);
 
-    if (!post) {
-      notFound();
-    }
-
+    if (!post) notFound();
     const user = await fetchUser(post.userId);
 
     return (
-      <div className="max-w-4xl mx-auto">
-        {/* Back Button */}
-        <div className="mb-6">
-          <Link href="/posts" className="btn btn-secondary">
+      <div className="post-detail max-w-4xl mx-auto px-4 py-12">
+        {/* ===== Back Button ===== */}
+        <div className="mb-10">
+          <Link
+            href="/posts"
+            className="inline-flex items-center text-purple-700 hover:text-purple-900 font-medium transition"
+          >
             ← Back to Posts
           </Link>
         </div>
 
-        {/* Post Content */}
-        <article className="card mb-8">
-          <header className="mb-6">
-            <h1 className="text-3xl font-bold text-gray-900 mb-4">
-              {post.title}
-            </h1>
-            {user && (
-              <div className="flex items-center text-gray-600">
-                <span className="text-sm">
-                  By <strong className="text-blue-600">{user.name}</strong>
-                </span>
-                <span className="mx-2">•</span>
-                <span className="text-sm">{user.email}</span>
-                {user.website && (
-                  <>
-                    <span className="mx-2">•</span>
-                    <a 
-                      href={`https://${user.website}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-sm text-blue-600 hover:underline"
-                    >
-                      {user.website}
-                    </a>
-                  </>
-                )}
+        {/* ===== Post Card ===== */}
+        <article
+          className="bg-white rounded-2xl shadow-[0_4px_6px_-2px_rgba(16,24,40,0.08),_0_12px_16px_-4px_rgba(16,24,40,0.14)] p-8 mb-12"
+        >
+          {/* Title */}
+          <h1 className="text-4xl font-bold text-gray-900 leading-tight mb-6">
+            {post.title}
+          </h1>
+
+          {/* Author Info */}
+          {user && (
+            <div className="flex items-center gap-3 mb-8">
+              <div className="h-12 w-12 flex items-center justify-center rounded-full bg-purple-100 text-purple-700 font-bold text-lg">
+                {user.name.charAt(0).toUpperCase()}
               </div>
-            )}
-          </header>
-          
-          <div className="prose max-w-none">
-            <p className="text-lg leading-relaxed text-gray-700">
-              {post.body}
-            </p>
+              <div>
+                <p className="text-sm text-gray-800 font-medium">
+                  {user.name}
+                </p>
+                <p className="text-sm text-gray-500">
+                  {user.email}
+                  {user.website && (
+                    <>
+                      {" • "}
+                      <a
+                        href={`https://${user.website}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-purple-600 hover:underline"
+                      >
+                        {user.website}
+                      </a>
+                    </>
+                  )}
+                </p>
+              </div>
+            </div>
+          )}
+
+          {/* Body */}
+          <div className="prose prose-lg text-gray-700 max-w-none leading-relaxed">
+            {post.body.split("\n").map((para, i) => (
+              <p key={i} className="mb-4">
+                {para}
+              </p>
+            ))}
           </div>
         </article>
 
-        {/* Comments Section */}
+        {/* ===== Comments Section ===== */}
         <section>
-          <h2 className="text-2xl font-bold mb-6">
-            Comments ({comments.length})
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">
+            💬 Comments ({comments.length})
           </h2>
-          
+
           {comments.length > 0 ? (
-            <div className="space-y-4">
+            <div className="space-y-6">
               {comments.map((comment) => (
-                <div key={comment.id} className="card">
+                <div
+                  key={comment.id}
+                  className="bg-white rounded-xl shadow-[0_4px_6px_-2px_rgba(16,24,40,0.08),_0_12px_16px_-4px_rgba(16,24,40,0.14)] p-5 transition hover:shadow-lg"
+                >
                   <div className="flex items-start justify-between mb-3">
                     <div>
                       <h3 className="font-semibold text-gray-900">
                         {comment.name}
                       </h3>
-                      <p className="text-sm text-gray-600">
-                        {comment.email}
-                      </p>
+                      <p className="text-sm text-gray-600">{comment.email}</p>
                     </div>
                   </div>
                   <p className="text-gray-700 leading-relaxed">
@@ -101,8 +108,8 @@ export default async function PostDetailPage({ params }: PostDetailPageProps) {
               ))}
             </div>
           ) : (
-            <div className="text-center py-12 text-gray-500">
-              <p>No comments yet.</p>
+            <div className="text-center py-12 text-gray-500 border border-dashed rounded-xl bg-gray-50">
+              <p>No comments yet. Be the first to reply 👀</p>
             </div>
           )}
         </section>
@@ -110,21 +117,22 @@ export default async function PostDetailPage({ params }: PostDetailPageProps) {
     );
   } catch (error) {
     return (
-      <div className="max-w-2xl mx-auto">
-        <div className="error">
-          <h3 className="text-lg font-semibold mb-2">Error Loading Post</h3>
-          <p>
-            Sorry, we couldn't load this post. Please try again later.
-          </p>
-          <p className="text-sm mt-2">
-            Error: {error instanceof Error ? error.message : 'Unknown error'}
-          </p>
-          <div className="mt-4">
-            <Link href="/posts" className="btn btn-primary">
-              Back to Posts
-            </Link>
-          </div>
-        </div>
+      <div className="max-w-2xl mx-auto py-16 text-center">
+        <h3 className="text-xl font-semibold mb-4 text-red-600">
+          Error Loading Post
+        </h3>
+        <p className="text-gray-600 mb-4">
+          Sorry, we couldn’t load this post. Please try again later.
+        </p>
+        <p className="text-sm text-gray-400 mb-6">
+          {error instanceof Error ? error.message : "Unknown error"}
+        </p>
+        <Link
+          href="/posts"
+          className="inline-block px-6 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition"
+        >
+          Back to Posts
+        </Link>
       </div>
     );
   }
