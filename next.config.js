@@ -4,7 +4,7 @@ const nextConfig = {
     typedRoutes: true,
   },
   images: {
-    domains: ['jsonplaceholder.typicode.com'],
+    domains: ['jsonplaceholder.typicode.com', 'source.unsplash.com', 'i.pravatar.cc'],
   },
 };
 
