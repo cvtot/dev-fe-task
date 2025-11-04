@@ -1,8 +1,8 @@
 import { Suspense } from 'react';
 import { fetchPosts, fetchUsers } from '@/lib/api';
-import PostCard from '@/components/PostCard';
-import Pagination from '@/components/Pagination';
-import UserFilter from '@/components/UserFilter';
+import PostCard from '@/components/posts/PostCard';
+import Pagination from '@/components/posts/Pagination';
+import UserFilter from '@/components/posts/UserFilter';
 
 interface SearchParams {
   page?: string;
